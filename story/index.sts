@@ -1,0 +1,121 @@
+Welcome, User!
+
+This is an instruction for StoryTailor, the programming language for making stories. It brings the power of programming into the Storytelling.
+
+Here you'll find an instruction for StoryTailor. 
+
+First of all, press Ctrl+` or find a menu at the top of the Window "Terminal->New Terminal". The terminal will open. Type there: 
+
+npm install
+
+And press Enter. This operation downloads and installs all the node.js modules needed for StoryTailor to work. 
+After it's done, press Ctrl+Shit+P (on Windows) or Command+Shift+P on Mac. The Command Palette will open. Type there
+
+StoryTailor: Compile and show Preview
+
+Select the command "StoryTailor: Compile and show Preview" and press Enter (or just left-click with mouse on this command).
+This command compiles a project and shows you a preview of the story in a "Preview story" window that appears at the left. When you work on some StoryTailor file and whant to see how it looks compiled, use this command. 
+
+As you can see the simple text compiles to the same simple text, just like if it was written in a regular txt file. 
+
+Let's add some magic to it. 
+
+// this is a comment line. It does not go to the compiled story. It's needed for developers to make notes inside the source code
+// to make a comment just type // at the beginning of the text that you want to make a comment
+/*
+	If you don't want to comment every line, 
+	but you have a multiline comment, 
+	just wrap the commented lines as in this code block
+*/
+Comments can be even /*commented line*/inside of the text.
+
+Here we have a variable: 
+
+* Text Variable = "Text Variable Value"
+
+Variable is a separate part of memory that holds some data for you. We can include this variable into the text between symbols * as ;, like here: *Text Variable;. Now press Ctrl+Shit+P (Command+Shift+P on Mac) and select the "StoryTailor: Compile and show Preview" option. It will compile the text and show it in the "Preview story" window. You can see that Variable's value is inserted into the text. We can insert it as many times as we want: *Text Variable; and again: *Text Variable;, and so on. 
+
+Variable can hold text line, like in example above, but also it can be a number or boolean: 
+
+* Number Variable = 100500
+
+* Boolean Variable = true
+
+So we can add them in text: Number: *Number Variable; is *Boolean Variable;. 
+
+We use "" to surround the string value like in our Text Variable. This string can also have an included variables:
+
+* Composite Text Variable = "Text: *Text Variable; Number: *Number Variable; and Boolean: *Boolean Variable;"
+
+Now let's include the variable into the text, so we can see how it works: *Composite Text Variable;. 
+
+Please, keep in mind that variable names are case-sensitive, which means "Variable" and "variable" are different variables. 
+
+Also we can create a function and put it into the variable:
+
+* Function Variable = function(value) {
+	// __text object is an array of all the text lines we have in our file so far
+	// to access parameter inside the function body we use @ symbol before the variable name
+	// let's add one more line to it:
+	__text.push("This line of text was added by function called with '*@value;' parameter.");
+}
+
+And now let's call the function and see how it works: 
+
+* { 
+  Function Variable("hello"); 
+  Function Variable(200);
+  Function Variable(true);
+}
+
+What if we want to add the * and ; symbols into the text without making a variable include? 
+To do so we just add the backslash before the special symbol, like here: \*; and it's now just a simple text.
+It called escaping. We can escape any symbol, even the backslash itself: \\.
+
+There are special symbols we can add into the text: the tab symbol (\t) the 'endline' (\r) symbol, the new line symbol (\n). Compile story to see how those symbols look in an assembled text.
+
+Now let's talk about the multiline text variables. To create one we need to declare a variable and paste it's text at the next line with one tab at the beginning of every line. Here we have one:
+* Multiline Text Variable
+	First line of the variable
+	Second line of the variable
+	Third line of the variable
+
+And here we will insert this variable into the text: 
+*Multiline Text Variable;
+As you can see, it's multiline even in the compiled story.
+
+In order to organise our variables we can nest them:
+* Root Variable
+	* Nested Variable = 10
+	* Nested Root Variable
+		* Double Nested Variable
+			And here is the text of the nested variable
+	* Nested Boolean = false
+
+To access nested variable we use it's full name starting from root variable and separating them by dot (.).
+Here it is: *Root Variable.Nested Variable;. Or "*Root Variable.Nested Root Variable.Double Nested Variable;" or Nested Boolean: *Root Variable.Nested Boolean;.
+if variable's value is set in one line, like * VariableName = value; that means this variable can't have nested variables.
+
+We don't have to hold everything in one file. Let's import another file (utils.sts) here:
+
+* import * as utils from "./utils"
+
+Now we have utils variable that holds everything that is in that "utils.sts" file. 
+For example, there is a variable "Story Name". Let's include it: *utils.Story Name;. This way we can split our story into several files and combine them together in some other one. 
+
+There is also another way to import the extenral file (import in):
+
+* import in * as utils from "./utils"
+
+This way we don't need to write the module name before every it's member:
+The story name is *Story Name;. This way simply copies every variable from that module into our module, as if they were declared here.
+
+Now it's time to go deeper. Here are code block:
+* {
+	// this is a code block. It allows to add operations
+
+	/*
+		Before we go, let's talk about the raw variables
+	*/
+}
+

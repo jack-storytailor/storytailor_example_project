@@ -1,0 +1,76 @@
+Welcome, User!
+
+This is an instruction for StoryTailor, the programming language for making stories. It brings the power of programming into the Storytelling.
+
+Here you'll find an instruction for StoryTailor. 
+
+First of all, press Ctrl+` or find a menu at the top of the Window "Terminal->New Terminal". The terminal will open. Type there: 
+
+npm install
+
+And press Enter. This operation downloads and installs all the node.js modules needed for StoryTailor to work. 
+After it's done, press Ctrl+Shit+P (on Windows) or Command+Shift+P on Mac. The Command Palette will open. Type there
+
+StoryTailor: Compile and show Preview
+
+Select the command "StoryTailor: Compile and show Preview" and press Enter (or just left-click with mouse on this command).
+This command compiles a project and shows you a preview of the story in a "Preview story" window that appears at the left. When you work on some StoryTailor file and whant to see how it looks compiled, use this command. 
+
+As you can see the simple text compiles to the same simple text, just like if it was written in a regular txt file. 
+
+Let's add some magic to it. 
+
+Comments can be even inside of the text.
+
+Here we have a variable: 
+
+Variable is a separate part of memory that holds some data for you. We can include this variable into the text between symbols * as ;, like here: Text Variable Value. Now press Ctrl+Shit+P (Command+Shift+P on Mac) and select the "StoryTailor: Compile and show Preview" option. It will compile the text and show it in the "Preview story" window. You can see that Variable's value is inserted into the text. We can insert it as many times as we want: Text Variable Value and again: Text Variable Value, and so on. 
+
+Variable can hold text line, like in example above, but also it can be a number or boolean: 
+
+So we can add them in text: Number: 100500 is true. 
+
+We use "" to surround the string value like in our Text Variable. This string can also have an included variables:
+
+Now let's include the variable into the text, so we can see how it works: Text: Text Variable Value Number: 100500 and Boolean: true. 
+
+Please, keep in mind that variable names are case-sensitive, which means "Variable" and "variable" are different variables. 
+
+Also we can create a function and put it into the variable:
+
+And now let's call the function and see how it works: 
+
+This line of text was added by function called with 'hello' parameter.
+This line of text was added by function called with '200' parameter.
+This line of text was added by function called with 'true' parameter.
+What if we want to add the * and ; symbols into the text without making a variable include? 
+To do so we just add the backslash before the special symbol, like here: *; and it's now just a simple text.
+It called escaping. We can escape any symbol, even the backslash itself: \.
+
+There are special symbols we can add into the text: the tab symbol (	) the 'endline' () symbol, the new line symbol (
+). Compile story to see how those symbols look in an assembled text.
+
+Now let's talk about the multiline text variables. To create one we need to declare a variable and paste it's text at the next line with one tab at the beginning of every line. Here we have one:
+
+And here we will insert this variable into the text: 
+First line of the variable
+Second line of the variable
+Third line of the variable
+As you can see, it's multiline even in the compiled story.
+
+In order to organise our variables we can nest them:
+To access nested variable we use it's full name starting from root variable and separating them by dot (.).
+Here it is: 10. Or "And here is the text of the nested variable" or Nested Boolean: false.
+if variable's value is set in one line, like * VariableName = value; that means this variable can't have nested variables.
+
+We don't have to hold everything in one file. Let's import another file (utils.sts) here:
+
+Now we have utils variable that holds everything that is in that "utils.sts" file. 
+For example, there is a variable "Story Name". Let's include it: Example StoryTailor project. This way we can split our story into several files and combine them together in some other one. 
+
+There is also another way to import the extenral file (import in):
+
+This way we don't need to write the module name before every it's member:
+The story name is Example StoryTailor project. This way simply copies every variable from that module into our module, as if they were declared here.
+
+Now it's time to go deeper. Here are code block:

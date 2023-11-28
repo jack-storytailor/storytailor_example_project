@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+		"target": "es6",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"lib": [ "es2016" ],
+    "sourceMap": true,
+		"allowJs": false,
+		"jsx": "react",
+
+		"rootDir": "./src",
+		"outDir": "./src"
+  },
+	"exclude": [
+		"node_modules",
+    "out"
+	]
+}

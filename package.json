@@ -1,0 +1,25 @@
+{
+  "name": "example-story",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./index.js",
+  "dependencies": {
+    "storytailor": "^0.0.22"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.2"
+  },
+  "scripts": {
+    "compileAndRun": "stsc stsconfig.json -ts tsconfig.json && node ./tasks/print_story.js",
+    "compile": "stsc stsconfig.json -ts tsconfig.json",
+    "compile:storytailor": "stsc stsconfig.json",
+    "compile:typescript": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "author name",
+  "license": ""
+}
