@@ -3,27 +3,25 @@
  * DON'T DESTROY THIS FILE IF YOU'RE NOT SURE WHY DO YOU NEED IT
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.testFunction = exports.clearText = exports.subitemsToString = exports.firstLetterUp = exports.fieldsToString = exports.getSerializer = void 0;
-const environment = require("storytailor/out/environment");
-const getSerializer = () => {
-    return {
-        serialize: (obj, separator) => {
-            if (obj === 0) {
-                return obj.toString();
+exports.testFunction = exports.clearText = exports.subitemsToString = exports.firstLetterUp = exports.fieldsToString = exports.getSerializer = exports.serializer = void 0;
+const basic_environment = require("storytailor/out/environment");
+exports.serializer = {
+    serialize: function serialize(obj, separator) {
+        if (obj && obj.htmlTag) {
+            let tag = serialize(obj.htmlTag, separator);
+            let attributes = '';
+            if (obj.htmlTagAttributes) {
+                attributes = serialize(obj.htmlTagAttributes, separator);
             }
-            if (obj !== false && !obj) {
-                return undefined;
+            if (tag) {
+                return `<${tag} ${attributes}>${basic_environment.objectToString(obj, separator)}</${tag}>`;
             }
-            if (obj.htmlTag) {
-                let tag = environment.objectToString(obj.htmlTag, separator);
-                let attributes = environment.objectToString(obj.htmlTagAttributes, separator);
-                if (tag) {
-                    return `<${tag} ${attributes}>${environment.objectToString(obj, separator)}</${tag}>`;
-                }
-            }
-            return environment.objectToString(obj, separator);
         }
-    };
+        return basic_environment.objectToString(obj, separator);
+    }
+};
+const getSerializer = () => {
+    return exports.serializer;
 };
 exports.getSerializer = getSerializer;
 const fieldsToString = (obj, separator) => {
@@ -97,5 +95,5 @@ const clearText = (context) => {
     return Object.assign(Object.assign({}, context), { __text: [] });
 };
 exports.clearText = clearText;
-exports.testFunction = environment.testFunction;
+exports.testFunction = basic_environment.testFunction;
 //# sourceMappingURL=environment.js.map

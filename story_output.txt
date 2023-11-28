@@ -22,40 +22,40 @@ Let's add some magic to it.
 
 Comments can be even inside of the text.
 
-Here we have a variable: 
-
-Variable is a separate part of memory that holds some data for you. We can include this variable into the text between symbols * as ;, like here: Text Variable Value. Now press Ctrl+Shit+P (Command+Shift+P on Mac) and select the "StoryTailor: Compile and show Preview" option. It will compile the text and show it in the "Preview story" window. You can see that Variable's value is inserted into the text. We can insert it as many times as we want: Text Variable Value and again: Text Variable Value, and so on. 
-
-Variable can hold text line, like in example above, but also it can be a number or boolean: 
-
-So we can add them in text: Number: 100500 is true. 
-
-We use "" to surround the string value like in our Text Variable. This string can also have an included variables:
-
-Now let's include the variable into the text, so we can see how it works: Text: Text Variable Value Number: 100500 and Boolean: true. 
-
-Please, keep in mind that variable names are case-sensitive, which means "Variable" and "variable" are different variables. 
-
-Also we can create a function and put it into the variable:
-
-And now let's call the function and see how it works: 
-
-This line of text was added by function called with 'hello' parameter.
-This line of text was added by function called with '200' parameter.
-This line of text was added by function called with 'true' parameter.
-What if we want to add the * and ; symbols into the text without making a variable include? 
-To do so we just add the backslash before the special symbol, like here: *; and it's now just a simple text.
-It called escaping. We can escape any symbol, even the backslash itself: \.
-
 There are special symbols we can add into the text: the tab symbol (	) the 'endline' () symbol, the new line symbol (
 ). Compile story to see how those symbols look in an assembled text.
 
-Now let's talk about the multiline text variables. To create one we need to declare a variable and paste it's text at the next line with one tab at the beginning of every line. Here we have one:
+Here we have a context variable:
+
+Variable is a separate part of memory that holds some data for you. We can include this variable into the text between symbols * and ; 
+Like here: Text Variable Value. Now press Ctrl+Shit+P (Command+Shift+P on Mac) and select the "StoryTailor: Compile and show Preview" option. It will compile the text and show it in the "Preview story" window. You can see that Variable's value is inserted into the text. We can insert it as many times as we want: Text Variable Value and again: Text Variable Value, and so on. 
+
+What if we want to add the * and ; symbols into the text without making a variable include? 
+To do so we just add the backslash before the special symbol, like here: *; and it's now just a simple text.
+It's called escaping. We can escape any special symbol, even the backslash itself: \.
+
+Variable can hold text line, like in example above, but also it can be a number or boolean: 
+
+So we can add them in the text: Number: 100 and boolean: true. 
+
+We use "" to surround the string value like in our Text Variable. This string can also have an included variables:
+
+Now let's include the variable into the text, so we can see how it works: Text: Text Variable Value Number: 100 and Boolean: true. 
+
+Please, keep in mind that variable names are case-sensitive, which means "Variable" and "variable" are different variables. 
+
+Context variable name can contain words and spaces between words. For example: 'Variable', 'Variable Name', 'Variable2 Name'.
+If we have any special symbol in the variable name, we have to escape it: 'Variable\" Name', 
+If in a variable name we have a digit surrounded by spaces, like 'Variable 3 Name', we have to escape this digit: 'Variable \3 Name'.
+If we want to have spaces in the beginning and/or end variable, we also have to escape them: ' Variable with spaces ', so this way StoryTailor knows that those spaces are also a part of the variable name. 
+
+There are special keywords used in the StoryTailor: if, else, import, as, from, for, in, while, do, break, continue, return, true, false, try, catch, finally, switch, case (they are highligted when we use them in a variable name). Keywords are used for making a programming instructions, that's why they are special cases. If we have some in the name of a variable, we need to escape them (or their parts) too:
+
+Now let's talk about the multiline text variables. To create one we need to declare a variable and put it's text at the next line with one tab at the beginning of every line. Here we have one:
 
 And here we will insert this variable into the text: 
-First line of the variable
-Second line of the variable
-Third line of the variable
+"Variable text value starts with a 'tab' offset under the variable declaration.
+This way StoryTailor knows that this text is a variable's value."
 As you can see, it's multiline even in the compiled story.
 
 In order to organise our variables we can nest them:
@@ -71,6 +71,18 @@ For example, there is a variable "Story Name". Let's include it: Example StoryTa
 There is also another way to import the extenral file (import in):
 
 This way we don't need to write the module name before every it's member:
-The story name is Example StoryTailor project. This way simply copies every variable from that module into our module, as if they were declared here.
+The story name is Example StoryTailor project. 'import in' command simply copies every variable from that module into our module, as if they were declared here.
 
-Now it's time to go deeper. Here are code block:
+And there is one more thing about variables. When we declare a variable by * VariableName syntax we actually create a field inside a "__context" object that lives in the root of the module. This why we can have variables with spaces in their name. The StoryTailor compiles to JavaScript, like TypeScript. So we can import any JavaScript module into StoryTailor module and vice versa. So, every context variable is a field of the __context object. But if we want to access a member outside the __context object, we need to add a '@' special symbol before the member name. 
+Like in this example, where we insert the current Date and Time in the story text: 11/28/2023, 6:45:22 PM;
+
+Also we can create a function and put it into the variable:
+
+Now it's time to go deeper. Here is the code block:
+
+This line of text was added in the code block. We have a Text Variable which contains 'Text Variable Value' string.
+And here is a function 'Print Text Line' called with different parameters:
+This line of text was added by function called with 'hello' parameter.
+This line of text was added by function called with '200' parameter.
+This line of text was added by function called with 'true' parameter.
+0 + 1 + 2 = 3
