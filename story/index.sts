@@ -61,7 +61,7 @@ If we have any special symbol in the variable name, we have to escape it: 'Varia
 If in a variable name we have a digit surrounded by spaces, like 'Variable 3 Name', we have to escape this digit: 'Variable \\3 Name'.
 If we want to have spaces in the beginning and/or end variable, we also have to escape them: '\ Variable with spaces\ ', so this way StoryTailor knows that those spaces are also a part of the variable name. 
 
-There are special keywords used in the StoryTailor: if, else, import, as, from, for, in, while, do, break, continue, return, true, false, try, catch, finally, switch, case, default, debugger (they are highligted when we use them in a variable name). Keywords are used for making a programming instructions, that's why they are special cases. If we have some in the name of a variable, we need to escape them (or their parts) too:
+There are special keywords used in the StoryTailor: if, else, import, as, from, const, var, let, for, in, while, do, break, continue, return, true, false, try, catch, finally, switch, case, class, super, extends, static, default, debugger (they are highligted when we use them in a variable name). Keywords are used for making a programming instructions, that's why they are special cases. If we have some in the name of a variable, we need to escape them (or their parts) too:
 
 * Variable with keywords \for \while r\eturn = "This variable has a for keyword"
 
@@ -96,14 +96,14 @@ if variable's value is set in one line, like * VariableName = value; that means 
 
 We don't have to hold everything in one file. Let's import another file (utils.sts) here:
 
-* import * as utils from "./utils"
+* import utils from "./utils"
 
 Now we have utils variable that holds everything that is in that "utils.sts" file. 
 For example, there is a variable "Story Name". Let's include it: *utils.Story Name;. This way we can split our story into several files and combine them together in some other one. 
 
 There is also another way to import the extenral file (import in):
 
-* import in * as utils from "./utils"
+* import in utils from "./utils"
 
 This way we don't need to write the module name before every it's member:
 The story name is *Story Name;. 'import in' command simply copies every variable from that module into our module, as if they were declared here.
@@ -206,7 +206,7 @@ Now let's go over __context object and look what members it has
 
 * {
 	// here is a tutorial of how to create an object using object literal:
-	let myObject = {
+	const myObject = {
 		"field": "value",
 		"field2": 20,
 		"field3": true,
@@ -217,8 +217,16 @@ Now let's go over __context object and look what members it has
 			"nested field": field,
 			@maxValue,
 			@__context
+		},
+		"lambda": (param1, param2) => {
+			return @param1 + @param2;
 		}
 	}
+
+	var a = 10;
+	
+	const consoleOutput = @myObject.lambda(() => { return 5; }, 10);
+	@console.log(@consoleOutput);
 }
 
 * {
